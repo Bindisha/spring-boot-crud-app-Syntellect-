@@ -1,5 +1,8 @@
 package com.syntellect.service.api.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import com.syntellect.service.api.entity.Product;
 
 public interface ProductService {
@@ -8,9 +11,9 @@ public interface ProductService {
 
 	void updateProductData(Product product, long id);
 
-	void getAllProductData();
+	List<Product> getAllProductData();
 
-	void getProductDataById(long id);
+	Product getProductDataById(long id);
 
 	void deleteProductDataById(long id);
 
