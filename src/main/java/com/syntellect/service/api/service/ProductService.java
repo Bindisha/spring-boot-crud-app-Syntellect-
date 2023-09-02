@@ -5,16 +5,17 @@ import java.util.Map;
 import java.util.Optional;
 
 import com.syntellect.service.api.entity.Product;
+import com.syntellect.service.api.entity.ProductDto;
 
 public interface ProductService {
 
-	void saveProductData(Product product);
+	ProductDto saveProductData(ProductDto product);
 
-	Product updateProductData(Product product, long id);
+	ProductDto updateProductData(ProductDto product, long id);
 
-	List<Product> getAllProductData();
+	List<ProductDto> getAllProductData();
 
-	Product getProductDataById(long id);
+	ProductDto getProductDataById(long id);
 
 	Map<String, Boolean> deleteProductDataById(long id);
 
