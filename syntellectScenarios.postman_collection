@@ -1,0 +1,179 @@
+{
+	"info": {
+		"_postman_id": "8b1ae4ce-a0c4-46be-a5aa-73c7af2f104f",
+		"name": "syntellect-postman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Adding Record",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productName\":\"prod new\",\r\n    \"productDescription\":\"last product\",\r\n    \"productPrice\":100.00\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/syntellect-service/api/v1/product",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"syntellect-service",
+						"api",
+						"v1",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Updating",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productId\":20,\r\n    \"productName\":\"product sixth item\",\r\n    \"productDescription\":\"Sixth Product description\",\r\n    \"productPrice\":4000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/syntellect-service/api/v1/product/20",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"syntellect-service",
+						"api",
+						"v1",
+						"product",
+						"20"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/syntellect-service/api/v1/product",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"syntellect-service",
+						"api",
+						"v1",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Product By ID-Not found",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/syntellect-service/api/v1/product/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"syntellect-service",
+						"api",
+						"v1",
+						"product",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Product By ID - Found",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/syntellect-service/api/v1/product/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"syntellect-service",
+						"api",
+						"v1",
+						"product",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete by ID -Not Found",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/syntellect-service/api/v1/product/8",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"syntellect-service",
+						"api",
+						"v1",
+						"product",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete by ID -Found",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/syntellect-service/api/v1/product/8",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"syntellect-service",
+						"api",
+						"v1",
+						"product",
+						"8"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
