@@ -1,0 +1,110 @@
+Scenario - Case #2
+Write a query given the following data model:
+Query: Get list of Posts with latest 10 comments of each post authored by 'James Bond'
+
+Answer: For this scenario, I have approched 2 ways via "inner query" and "Join Query"
+
+create table author (id int primary key,name VARCHAR(100));
+
+
+CREATE TABLE post(
+id int primary key,
+name varchar(100),
+author_id int,
+created_date timestamp,
+CONSTRAINT fk_author FOREIGN KEY(author_id) REFERENCES author(id)
+);
+
+
+create table users (
+id int primary key,
+name varchar(100)
+);
+
+
+create table comment (
+id int primary key,
+contents varchar(1000),
+post_id int, 
+createdts timestamp,
+user_id int ,
+CONSTRAINT fk_posts FOREIGN KEY(post_id) REFERENCES post(id),
+CONSTRAINT fk_users FOREIGN KEY(user_id) REFERENCES users(id)
+);
+
+
+
+insert into author values(1,'James Bond');
+insert into author values(2,'Chetan Bhagat');
+insert into author values(3,'J. K. Rowling');
+insert into author values(4,'George R. R. Martin');
+insert into author values(5,'Robin Sharma');
+
+
+
+insert into post values(101,'No Time To Die',1,'2021-01-31');
+insert into post values(102,'Spec',1,'2015-06-20');
+insert into post values(103,'sky Fall',1,'2012-03-10');
+insert into post values(104,'Two States',2,'2009-02-28');
+insert into post values(105,'Half Girlfrien',2,'2014-06-23');
+insert into post values(106,'3 Mistakes of my life',2,'2008-03-17');
+insert into post values(107,'Harry Potter',3,'1997-01-31');
+insert into post values(108,'Fantastic Beast',3,'2001-06-20');
+insert into post values(109,'The Ice Dragon',4,'1980-01-31');
+insert into post values(110,'Night Vision',4,'1985-06-20');
+insert into post values(111,'Who Will Cry When You Die',5,'1999-01-31');
+
+
+
+insert into users values(201,'Sam');
+insert into users values(202,'Ricky');
+insert into users values(203,'Marty');
+insert into users values(204,'Paul');
+insert into users values(205,'Gil');
+insert into users values(206,'Evan');
+insert into users values(207,'Luk');
+insert into users values(208,'Loki');
+insert into users values(209,'Tony');
+insert into users values(210,'Thor');
+
+
+
+insert into "comment" values(301,'Movie was good but sad see ending',101,'2023-01-31 15:30:00',201);
+insert into "comment" values(302,'Action was hilarious',102,'2022-02-28 11:30:00',202);
+insert into "comment" values(303,'Awesome movie',103,'2021-03-31 12:30:00',203);
+insert into "comment" values(304,'Good comedy',101,'2022-04-20 13:30:00',204);
+insert into "comment" values(305,'Amzaing dialogues',102,'2021-05-31 11:30:00',205);
+insert into "comment" values(306,'End was not that good',103,'2023-06-09 13:30:00',206);
+insert into "comment" values(307,'Movie was good but sad see ending',101,'2022-07-31 13:30:00',207);
+insert into "comment" values(308,'Expecting more',102,'2022-08-31 12:30:00',208);
+insert into "comment" values(309,'Once a watch',103,'2021-09-21 18:30:00',209);
+insert into "comment" values(310,'Looking forward for next part',101,'2023-10-31 16:30:00',210);
+insert into "comment" values(311,'Beginning was good',102,'2022-11-06 13:30:00',203);
+insert into "comment" values(312,'Suspense was deep',103,'2022-12-31 12:30:00',205);
+insert into "comment" values(313,'Climax was amazing',101,'2021-02-18 11:30:00',206);
+insert into "comment" values(314,'Climax was amazing',104,'2021-02-18 11:30:00',206);
+insert into "comment" values(315,'Suspense was deep',105,'2022-12-31 11:30:00',210);
+insert into "comment" values(316,'Climax was amazing',106,'2023-02-18 11:30:00',205);
+insert into "comment" values(317,'Climax was amazing',107,'2022-02-18 11:30:00',204);
+insert into "comment" values(318,'Climax was amazing',108,'2000-02-18 11:30:00',203);
+insert into "comment" values(319,'Climax was amazing',109,'2020-02-18 11:30:00',208);
+insert into "comment" values(320,'Climax was amazing',110,'2022-02-18 11:30:00',205);
+insert into "comment" values(321,'Climax was amazing',111,'2023-02-18 11:30:00',207);
+
+
+
+select  * from "comment" c where post_id in 
+(select id from post p where author_id in 
+(select id from author a where name in ('James Bond') )) 
+order  by createdts desc  limit 10;
+
+
+select p."name" ,p.created_date ,a."name"  ,c.contents  , c.createdts,u."name"  from "comment" c 
+join post p
+on c.post_id =p.id 
+JOIN author a
+ON p.author_id =a.id 
+join users u 
+on c.user_id =u.id 
+where  a."name" ='James Bond'
+order  by c.createdts  desc  limit 10;

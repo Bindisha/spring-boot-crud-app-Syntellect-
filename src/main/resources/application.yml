@@ -1,0 +1,16 @@
+server:  
+  port: 8082
+  servlet:
+    context-path: /syntellect-service
+  
+spring:
+  application:
+    name: web-app-api-syntellect
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5433/postgres?currentSchema=syntellect
+    username: postgres
+    password: pa$$word
+  jpa:
+    hibernate:
+         ddl-auto: update
