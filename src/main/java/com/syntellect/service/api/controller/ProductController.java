@@ -1,6 +1,7 @@
 package com.syntellect.service.api.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -36,11 +37,9 @@ public class ProductController {
 		return "save";
 	}
 	@PutMapping("/product/{id}")
-	public String updateProduct(@RequestBody Product product, @PathVariable long id) {
-		product.setId(id);
-		productService.updateProductData(product,id);
-		log.info("in");
-		return "updated";
+	public ResponseEntity<Product> updateProduct(@RequestBody Product product, @PathVariable long id) {
+		log.info("Updating Product By ID",id);
+		return new ResponseEntity<>(productService.updateProductData(product,id), HttpStatus.OK);
 	}
 	@GetMapping("/products")
 	public ResponseEntity<Product> getAllProducts() {
@@ -49,13 +48,13 @@ public class ProductController {
 		
 	}
 	@GetMapping("/product/{id}")
-	public String getProductById(@PathVariable long id) {
-		productService.getProductDataById(id);
-		return "get by id";
+	public ResponseEntity<Product> getProductById(@PathVariable long id) {
+		log.info("Calling Product By ID",id);
+		return new ResponseEntity<>(productService.getProductDataById(id), HttpStatus.OK);
 	}
 	@DeleteMapping("/product/{id}")
-	public String deleteProductById(@PathVariable long id) {
-		productService.deleteProductDataById(id);
-		return "deleted";
+	public ResponseEntity<Map<String, Boolean>> deleteProductById(@PathVariable long id) {
+		log.info("Deleting Product By ID",id);
+		return new ResponseEntity<>(productService.deleteProductDataById(id),HttpStatus.OK);
 	}
 }

@@ -39,6 +39,6 @@ public class Product {
 	@Column
 	@NotNull
 	@Positive
-	@Pattern(regexp = "\"^[0-9]\"", message = "Not valid")
+	/* @Pattern(regexp = "\"^[0-9]\"", message = "Not valid") */
 	private Double price;
 }
